@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="login.css">
+        <title> Welcome To FMS Demo</title>
+    </head>
+    <body>
+        
+        <div id="topbar" >
+            <img src="fmslogo.png">
+            <h1> Welcome To FMS</h1>
+        </div>
+    <div class="form-style-6">
+        
+            <form method="get" action="home.html" onsubmit=" return passwordCheck();">
+                <input type="text" name="username" id="username" placeholder=" User Name" />
+                <input type="password" name="password" id="password" placeholder="Password" />
+                
+                <input type="submit" id="btnsubmit" value="Send"  />
+
+            </form>
+            <a href="#"> Having Trouble :(</a>
+    </div>
+        <script type="text/javascript">
+            var attempt=0;
+            function passwordCheck() 
+            {                   
+                document.getElementById("username").style.background="#fff"
+                document.getElementById("password").style.background="#fff";
+                
+                var username=document.getElementsByName("username")[0].value
+                var password=document.getElementById("password").value;
+                //alert(password.length);
+                
+                if(password.length==0 || username.length==0)
+                {
+                    if(password.length==0)
+                    {document.getElementById("password").style.background="#2EBC99";}
+                    if(username.length==0)
+                    {document.getElementById("username").style.background="#2EBC99";}
+                    setAttempt();
+                    return false;
+                }
+                    return true;
+            }
+
+            
+
+            function setAttempt()
+            {
+                attempt++;
+                if(attempt>=3)
+                    {
+                        alert("Maximum login attempts are passed \n"+"Please try later");
+                        document.getElementById("btnsubmit").disabled="true";
+                    }
+
+            }
+
+        </script>
+    </body>
+</html>
