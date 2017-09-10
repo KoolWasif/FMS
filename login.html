@@ -1,45 +1,133 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="login.css">
-        <title> Welcome To FMS Demo</title>
-    </head>
-    <body>
-        
-        <div id="topbar" >
-            <img src="fmslogo.png">
-            <h1> Welcome To FMS</h1>
-        </div>
-    <div class="form-style-6">
-        
-            <form method="get" action="home.html" onsubmit=" return passwordCheck();">
-                <input type="text" name="username" id="username" placeholder=" User Name" />
-                <input type="password" name="password" id="password" placeholder="Password" />
-                
-                <input type="submit" id="btnsubmit" value="Send"  />
 
-            </form>
-            <a href="#"> Having Trouble :(</a>
+<html lang="en">
+    
+  <head>
+      
+    <meta charset="utf-8">
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    
+    <script src="https://use.fontawesome.com/398a364240.js"></script>
+
+
+
+    <style type="text/css">
+
+    #topheader
+    {
+        font-weight: bold;
+        padding-left: 15px;
+
+        font-family: 'Droid Sans', sans-serif;
+        font-size: 140%;
+    }
+
+    #formdiv
+    {
+          padding-top: 10px;
+
+        
+    }
+
+    #formdiv label
+    {
+        font-family: 'Droid Sans', sans-serif;
+        
+    }
+
+    #alert-div
+    {
+       
+        padding-top: 20px;
+        margin-top: 60px;
+        
+    }
+
+    #footer
+    {
+
+        margin-top: 230px;
+        background-color: #E3F2FD;
+        padding-top: 30px;
+        height: 75px;
+        font-family: 'Droid Sans', sans-serif;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+
+    </style>
+    </head>
+    
+  <body>
+     <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+      
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
+      <!-- Image and text -->
+
+<nav class="navbar navbar-light navbar-fixed-top  bg-primary" >
+  
+    <img src="fmslogo.png" width="50" height="40" class="d-inline-block align-top" alt=""> <strong id="topheader">Welcome to FMS</strong> 
+</nav>
+<div class="container">
+ <div id="alert-div" class="alert alert-danger alert-dismissible fade" role="alert">
+  
+  <strong>Hey Mate!</strong> You have reached maximun login attempts Please try later.
+</div>
+</div>
+    <div class="container" id="formdiv">
+   
+    <div class="row">
+  <div class="col-sm-4"> </div>
+  <div class="col-sm-4">
+        <form action="home.html" onsubmit="return passwordCheck();">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary" id="btnsubmit">Submit</button>
+</form>
     </div>
-        <script type="text/javascript">
+</div>
+</div>
+
+<div id="footer">
+ Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2017 
+
+</div>
+
+
+    <script type="text/javascript">
             var attempt=0;
             function passwordCheck() 
             {                   
-                document.getElementById("username").style.background="#fff"
-                document.getElementById("password").style.background="#fff";
+               ;
                 
-                var username=document.getElementsByName("username")[0].value
-                var password=document.getElementById("password").value;
-                //alert(password.length);
+                var username=$("#InputEmail").val();
+                var password=$("#InputPassword").val();
+                //alert(username.length);
                 
                 if(password.length==0 || username.length==0)
                 {
                     if(password.length==0)
-                    {document.getElementById("password").style.background="#2EBC99";}
+                    {$("#InputPassword").addClass("bg-info")}
                     if(username.length==0)
-                    {document.getElementById("username").style.background="#2EBC99";}
+                    {$("#InputEmail").addClass("bg-info");}
                     setAttempt();
                     return false;
                 }
@@ -53,12 +141,23 @@
                 attempt++;
                 if(attempt>=3)
                     {
-                        alert("Maximum login attempts are passed \n"+"Please try later");
-                        document.getElementById("btnsubmit").disabled="true";
+                        $("#alert-div").toggleClass("fade");
+                        $("#btnsubmit").attr("disabled", true);
                     }
 
             }
 
+            $("#close").click(function hideAlert () {
+                // body...
+                $("#alert-div").toggleClass("fade");
+
+            })
+
         </script>
+
+
+
+
     </body>
+
 </html>
